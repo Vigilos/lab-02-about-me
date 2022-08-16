@@ -20,15 +20,13 @@ document.querySelector('.login').addEventListener('click', function () {
       scubaAnswer[1] ? 'right' : 'wrong'
     }. I like to SCUBA dive (I'm actually a Divemaster). And, you were ${
       sailingAnswer[1] ? 'spot on' : 'a little off'
-    }. I actually do like to sail. I've even taught sailing on the San Francisco Bay. You answered ${
-      dogAnswer[0]
-    } regarding me being a dog trainer. You ${
+    }. I actually do like to sail. I've even taught sailing on the San Francisco Bay. You answered ${dogAnswer[0].toLowerCase()} regarding me being a dog trainer. You ${
       dogAnswer[1] ? 'got' : 'missed'
     } that one. On the subject of sushi, you ${
       sushiAnswer[1] ? 'already know me' : "didn't quite get it"
-    }. And, last but not least, your answer ${droneAnswer[0]} was ${
+    }. And, last but not least, your answer ${droneAnswer[0].toLowerCase()} was ${
       droneAnswer[1] ? 'correct' : 'not correct'
-    }, I do have a commercial drone pilots license. All in all, you got ${numberCorrect} questions right. You must ${
+    }, I do have a commercial drone pilots license. All in all, you got ${numberCorrect} out of 5 answers right. You must ${
       numberCorrect >= 3 ? '' : 'not'
     } know me very well.`;
   } else {
