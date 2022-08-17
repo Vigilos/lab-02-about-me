@@ -38,9 +38,8 @@ document.querySelector('.login').addEventListener('click', function () {
 });
 
 const askQuestion = function (message, correctAnswer) {
-  let goodAnswer = false;
   let answerCorrect = false;
-  while (!goodAnswer) {
+  while (true) {
     let answer = prompt(message);
     if (answer != null) {
       answer = answer.toLowerCase();
