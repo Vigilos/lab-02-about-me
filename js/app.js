@@ -67,6 +67,12 @@ document.querySelector('.login').addEventListener('click', function () {
     }, I do have a commercial drone pilots license. All in all, you got ${aboutMeScore} out of 5 answers right. You must ${
       numberCorrect >= 3 ? '' : 'not'
     } know me very well.`;
+    document.querySelector('#about-me-score').textContent = aboutMeScore;
+    document.querySelector('#guess-number-score').textContent =
+      numberGuessScore;
+    document.querySelector('#parks-score').textContent = parksGuessScore;
+    document.querySelector('#total-score').textContent =
+      aboutMeScore + numberGuessScore + parksGuessScore;
     document.querySelector('#more-info').classList.remove('hidden');
   } else {
     alert('Please enter a valid login name to continue.');
@@ -124,6 +130,7 @@ const askQuestion = function (message, correctAnswer, questionType) {
           );
           return 0;
         }
+        // Handle for number questions
       } else if (questionType === 'multi') {
         answer = answer.toLowerCase();
         for (let park of correctAnswer) {
