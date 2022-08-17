@@ -44,3 +44,10 @@ main {
 .hidden {
   display: none;
 }
+#education {
+  list-style: square;
+}
+#scores-table table,
+td {
+  border: thin solid black;
+}

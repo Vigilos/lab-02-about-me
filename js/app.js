@@ -1,5 +1,5 @@
 'use strict';
-document.querySelector('#education-work').classList.add('hidden');
+document.querySelector('#more-info').classList.add('hidden');
 let numberCorrect = 0;
 document.querySelector('.login').addEventListener('click', function () {
   let loginName = prompt('Please enter your first name to login:');
@@ -8,13 +8,29 @@ document.querySelector('.login').addEventListener('click', function () {
     alert(
       `Greetings, ${loginName}! \n\nYou will be asked a series of yes or no questions, to see how much you know about the site owner. Good luck!`
     );
-    let scubaAnswer = askQuestion('Does the site owner SCUBA dive?', 'Yes');
-    let sailingAnswer = askQuestion('Does he like to sail?', 'Yes');
-    let dogAnswer = askQuestion('Has the site owner been a dog trainer?', 'No');
-    let sushiAnswer = askQuestion('Does he dislike sushi?', 'No');
+    let scubaAnswer = askQuestion(
+      'Does the site owner SCUBA dive?',
+      'Yes',
+      'yn'
+    );
+    let sailingAnswer = askQuestion('Does he like to sail?', 'Yes', 'yn');
+    let dogAnswer = askQuestion(
+      'Has the site owner been a dog trainer?',
+      'No',
+      'yn'
+    );
+    let sushiAnswer = askQuestion('Does he dislike sushi?', 'No', 'yn');
     let droneAnswer = askQuestion(
       'Does the site owner have a commercial drone pilots license?',
-      'Yes'
+      'Yes',
+      'yn'
+    );
+    let aboutMeScore = numberCorrect;
+    let randomNumber = Math.floor(Math.random() * 10) + 1;
+    let numberGuess = askQuestion(
+      'I am thinking of a number between 1 and 10. You have a total of four guesses (within the range) to get it right and get a point.  Take a guess at what the number is:',
+      randomNumber,
+      'num'
     );
     document.querySelector(
       '#about-me'
@@ -28,41 +44,69 @@ document.querySelector('.login').addEventListener('click', function () {
       sushiAnswer[1] ? 'already know me' : "didn't quite get it"
     }. And, last but not least, your answer ${droneAnswer[0].toLowerCase()} was ${
       droneAnswer[1] ? 'correct' : 'not correct'
-    }, I do have a commercial drone pilots license. All in all, you got ${numberCorrect} out of 5 answers right. You must ${
+    }, I do have a commercial drone pilots license. All in all, you got ${aboutMeScore} out of 5 answers right. You must ${
       numberCorrect >= 3 ? '' : 'not'
     } know me very well.`;
-    document.querySelector('#education-work').classList.remove('hidden');
+    document.querySelector('#more-info').classList.remove('hidden');
   } else {
     alert('Please enter a valid login name to continue.');
   }
 });
 
-const askQuestion = function (message, correctAnswer) {
+const askQuestion = function (message, correctAnswer, questionType) {
   let answerCorrect = false;
+  let answerCount = 0;
   while (true) {
     let answer = prompt(message);
     if (answer != null) {
-      answer = answer.toLowerCase();
-      if (answer === 'yes' || answer === 'y') answer = 'Yes';
-      if (answer === 'no' || answer === 'n') answer = 'No';
-      if (answer === 'Yes' || answer === 'No') {
-        if (answer === correctAnswer) {
-          numberCorrect++;
-          answerCorrect = true;
+      // Handle for Yes/No questions
+      if (questionType === 'yn') {
+        answer = answer.toLowerCase();
+        if (answer === 'yes' || answer === 'y') answer = 'Yes';
+        if (answer === 'no' || answer === 'n') answer = 'No';
+        if (answer === 'Yes' || answer === 'No') {
+          if (answer === correctAnswer) {
+            numberCorrect++;
+            answerCorrect = true;
+          }
+          // console.log(
+          //   `The correct answer to '${message}' is ${correctAnswer}. You answered ${answer}, which was ${
+          //     answerCorrect ? 'CORRECT' : 'INCORRECT'
+          //   }!`
+          // );
+          alert(
+            `The correct answer to '${message}' is ${correctAnswer}. You answered ${answer}, which was ${
+              answerCorrect ? 'CORRECT' : 'INCORRECT'
+            }!`
+          );
+          return [answer, answerCorrect];
         }
-        // console.log(
-        //   `The correct answer to '${message}' is ${correctAnswer}. You answered ${answer}, which was ${
-        //     answerCorrect ? 'CORRECT' : 'INCORRECT'
-        //   }!`
-        // );
-        alert(
-          `The correct answer to '${message}' is ${correctAnswer}. You answered ${answer}, which was ${
-            answerCorrect ? 'CORRECT' : 'INCORRECT'
-          }!`
-        );
-        return [answer, answerCorrect];
+        // Handle for number questions
+      } else if (questionType === 'num') {
+        if (answer < 1 || answer > 10) {
+          alert('Please provide a number between 1 and 10. Try again!');
+        } else if (answer < correctAnswer) {
+          answerCount++;
+          alert("You're guess was too low. Try again!");
+        } else if (answer > correctAnswer) {
+          answerCount++;
+          alert("You're answer was too high. Try again!");
+        } else if (answer == correctAnswer) {
+          alert('You got it!');
+          numberCorrect++;
+          return;
+        } else {
+          alert('Please provide a number for this question. Try again!');
+        }
+        if (answerCount === 4) {
+          alert(
+            "I'm sorry you weren't able to guess the right number. Maybe next time 😉"
+          );
+          return;
+        }
       }
+    } else {
+      alert('Please provide a valid entry!');
     }
-    alert('Please provide a valid entry of yes, no, y or n.');
   }
 };
