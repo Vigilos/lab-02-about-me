@@ -127,7 +127,7 @@ const askQuestion = function (message, correctAnswer, questionType) {
         }
         if (answerCount === 4) {
           alert(
-            "I'm sorry you weren't able to guess the right number. Maybe next time 😉"
+            `I'm sorry you weren't able to guess the right number. The number was ${correctAnswer}. Maybe next time 😉`
           );
           return 0;
         }
