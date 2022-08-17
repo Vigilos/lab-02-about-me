@@ -42,7 +42,6 @@ document.querySelector('.login').addEventListener('click', function () {
       'pinnicles',
       'chiricahua',
     ];
-
     let parksGuessScore = askQuestion(
       "Guess at least one of favorite national parks that I've visited (you have 6 tries):",
       parksAnswers,
@@ -132,7 +131,7 @@ const askQuestion = function (message, correctAnswer, questionType) {
           );
           return 0;
         }
-        // Handle for number questions
+        // Handle for multiple answer questions (i.e. array)
       } else if (questionType === 'multi') {
         answer = answer.toLowerCase();
         for (let park of correctAnswer) {
