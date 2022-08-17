@@ -1,5 +1,6 @@
 'use strict';
 document.querySelector('#more-info').classList.add('hidden');
+document.querySelector('#scores-table').classList.add('hidden');
 let numberCorrect = 0;
 let parksAnswersString = '';
 document.querySelector('.login').addEventListener('click', function () {
@@ -74,6 +75,7 @@ document.querySelector('.login').addEventListener('click', function () {
     document.querySelector('#total-score').textContent =
       aboutMeScore + numberGuessScore + parksGuessScore;
     document.querySelector('#more-info').classList.remove('hidden');
+    document.querySelector('#scores-table').classList.remove('hidden');
   } else {
     alert('Please enter a valid login name to continue.');
   }
