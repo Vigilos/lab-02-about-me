@@ -1,4 +1,5 @@
 'use strict';
+document.querySelector('#education-work').classList.add('hidden');
 let numberCorrect = 0;
 document.querySelector('.login').addEventListener('click', function () {
   let loginName = prompt('Please enter your first name to login:');
@@ -29,6 +30,7 @@ document.querySelector('.login').addEventListener('click', function () {
     }, I do have a commercial drone pilots license. All in all, you got ${numberCorrect} out of 5 answers right. You must ${
       numberCorrect >= 3 ? '' : 'not'
     } know me very well.`;
+    document.querySelector('#education-work').classList.remove('hidden');
   } else {
     alert('Please enter a valid login name to continue.');
   }

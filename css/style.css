@@ -38,3 +38,6 @@ footer {
 main {
   margin: 25px;
 }
+.hidden {
+  display: none;
+}
