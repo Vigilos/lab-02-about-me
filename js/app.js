@@ -1,6 +1,7 @@
 'use strict';
 document.querySelector('#more-info').classList.add('hidden');
 let numberCorrect = 0;
+let parksAnswersString = '';
 document.querySelector('.login').addEventListener('click', function () {
   let loginName = prompt('Please enter your first name to login:');
   if (loginName !== null && loginName !== '') {
@@ -27,11 +28,30 @@ document.querySelector('.login').addEventListener('click', function () {
     );
     let aboutMeScore = numberCorrect;
     let randomNumber = Math.floor(Math.random() * 10) + 1;
-    let numberGuess = askQuestion(
+    let numberGuessScore = askQuestion(
       'I am thinking of a number between 1 and 10. You have a total of four guesses (within the range) to get it right and get a point.  Take a guess at what the number is:',
       randomNumber,
       'num'
     );
+
+    const parksAnswers = [
+      'yosemite',
+      'yellowstone',
+      'grand canyon',
+      'pinnicles',
+      'chiricahua',
+    ];
+
+    let parksGuessScore = askQuestion(
+      "Guess at least one of favorite national parks that I've visited (you have 6 tries):",
+      parksAnswers,
+      'multi'
+    );
+    for (let park of parksAnswers) {
+      parksAnswersString += '\n' + park;
+    }
+    alert(`All the possible correct answers were: ${parksAnswersString}`);
+
     document.querySelector(
       '#about-me'
     ).textContent = `Well, ${loginName}, you've learned a little more about me, the site owner. You were ${
@@ -92,9 +112,9 @@ const askQuestion = function (message, correctAnswer, questionType) {
           answerCount++;
           alert("You're answer was too high. Try again!");
         } else if (answer == correctAnswer) {
-          alert('You got it!');
+          alert('You got it! Nice!');
           numberCorrect++;
-          return;
+          return 1;
         } else {
           alert('Please provide a number for this question. Try again!');
         }
@@ -102,7 +122,23 @@ const askQuestion = function (message, correctAnswer, questionType) {
           alert(
             "I'm sorry you weren't able to guess the right number. Maybe next time 😉"
           );
-          return;
+          return 0;
+        }
+      } else if (questionType === 'multi') {
+        answer = answer.toLowerCase();
+        for (let park of correctAnswer) {
+          if (answer === park) {
+            numberCorrect++;
+            alert('You guessed one of national park favorites! Great job!');
+            return 1;
+          }
+        }
+        answerCount++;
+        if (answerCount === 6) {
+          alert(
+            "I'm sorry you weren't able to guess any of my favorite parks. Maybe next time 😟"
+          );
+          return 0;
         }
       }
     } else {
