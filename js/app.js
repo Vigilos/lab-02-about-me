@@ -4,6 +4,7 @@ let numberCorrect = 0;
 document.querySelector('.login').addEventListener('click', function () {
   let loginName = prompt('Please enter your first name to login:');
   if (loginName !== null && loginName !== '') {
+    numberCorrect = 0;
     alert(
       `Greetings, ${loginName}! \n\nYou will be asked a series of yes or no questions, to see how much you know about the site owner. Good luck!`
     );
