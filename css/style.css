@@ -32,6 +32,10 @@ nav li {
 }
 footer {
   background-color: #403c3cee;
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 #copyright {
   color: aliceblue;
@@ -47,7 +51,23 @@ main {
 #education {
   list-style: square;
 }
+#scores-table {
+  float: right;
+  margin-right: 30%;
+  margin-left: 25px;
+  margin-bottom: 25px;
+}
 #scores-table table,
 td {
   border: thin solid black;
+  background-color: rgb(246, 245, 182);
+}
+#score-table table {
+  width: 100px;
+  padding: 20px;
+  margin: 20px;
+}
+.scores {
+  width: 30px;
+  text-align: center;
 }
