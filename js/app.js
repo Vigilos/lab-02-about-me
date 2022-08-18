@@ -98,7 +98,7 @@ document.querySelector('.login').addEventListener('click', function () {
 const askQuestion = function (message, correctAnswer, questionType) {
   let answerCorrect = false;
   let answerCount = 0;
-  while (true) {
+  while (true) { // Add error handling later
     let answer = prompt(message);
     if (answer != null) {
       // Handle for Yes/No questions
