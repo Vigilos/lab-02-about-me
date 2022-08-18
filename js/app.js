@@ -1,8 +1,12 @@
 'use strict';
+
+// Init DOM onjects and variables
 document.querySelector('#more-info').classList.add('hidden');
 document.querySelector('#scores-table').classList.add('hidden');
 let numberCorrect = 0;
 let parksAnswersString = '';
+
+// Initiate login and mandatory questions when button clicked
 document.querySelector('.login').addEventListener('click', function () {
   let loginName = prompt('Please enter your first name to login:');
   if (loginName !== null && loginName !== '') {
@@ -10,6 +14,8 @@ document.querySelector('.login').addEventListener('click', function () {
     alert(
       `Greetings, ${loginName}! \n\nYou will be asked a series of yes or no questions, to see how much you know about the site owner. Good luck!`
     );
+
+    // Begin About Me questions
     let scubaAnswer = askQuestion(
       'Does the site owner SCUBA dive?',
       'Yes',
@@ -27,6 +33,8 @@ document.querySelector('.login').addEventListener('click', function () {
       'Yes',
       'yn'
     );
+
+    // Setup for and ask random number guessing question
     let aboutMeScore = numberCorrect;
     let randomNumber = Math.floor(Math.random() * 10) + 1;
     let numberGuessScore = askQuestion(
@@ -35,6 +43,7 @@ document.querySelector('.login').addEventListener('click', function () {
       'num'
     );
 
+    // Setup for and ask question with multiple possible answers
     const parksAnswers = [
       'yosemite',
       'yellowstone',
@@ -47,11 +56,14 @@ document.querySelector('.login').addEventListener('click', function () {
       parksAnswers,
       'multi'
     );
+
+    // Display all the correct answers from the multiple answers quetions
     for (let park of parksAnswers) {
       parksAnswersString += '\n' + park;
     }
     alert(`All the possible correct answers were: ${parksAnswersString}`);
 
+    // Create and display the About Me paragraph on DOM
     document.querySelector(
       '#about-me'
     ).textContent = `Well, ${loginName}, you've learned a little more about me, the site owner. You were ${
@@ -67,6 +79,8 @@ document.querySelector('.login').addEventListener('click', function () {
     }, I do have a commercial drone pilots license. All in all, you got ${aboutMeScore} out of 5 answers right. You must ${
       numberCorrect >= 3 ? '' : 'not'
     } know me very well.`;
+
+    // Display scores for each quetions section to DOM
     document.querySelector('#about-me-score').textContent = aboutMeScore;
     document.querySelector('#guess-number-score').textContent =
       numberGuessScore;
@@ -80,6 +94,7 @@ document.querySelector('.login').addEventListener('click', function () {
   }
 });
 
+// Declare fucntion to ask and process all types of questions
 const askQuestion = function (message, correctAnswer, questionType) {
   let answerCorrect = false;
   let answerCount = 0;
@@ -108,6 +123,7 @@ const askQuestion = function (message, correctAnswer, questionType) {
           );
           return [answer, answerCorrect];
         }
+
         // Handle for number questions
       } else if (questionType === 'num') {
         if (answer < 1 || answer > 10) {
@@ -131,6 +147,7 @@ const askQuestion = function (message, correctAnswer, questionType) {
           );
           return 0;
         }
+
         // Handle for multiple answer questions (i.e. array)
       } else if (questionType === 'multi') {
         answer = answer.toLowerCase();
