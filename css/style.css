@@ -32,21 +32,24 @@ nav li {
 }
 footer {
   background-color: #403c3cee;
-  position: sticky;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
+  height: 25px;
 }
 #copyright {
   color: aliceblue;
   text-align: center;
+  padding: 0;
+  margin: 0;
 }
 main {
   margin: 25px;
   padding-top: 10px;
 }
 .hidden {
-  display: none;
+  /* display: none; */
 }
 #education {
   list-style: square;
