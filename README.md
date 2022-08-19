@@ -6,4 +6,4 @@ In this project, a website is created to ask a series of questions, to help the 
 | :-------: | :------------------------------------------------------: |
 | 17-Aug-22 |                 Initial build of website                 |
 | 18-Aug-22 | Added 2 guessing game questions and a score presentation |
-| 19-Aug-22 |                Added Reset button feature                |
+| 19-Aug-22 | Added Reset button feature, Made footer stick to bottom  |
