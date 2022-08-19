@@ -1,6 +1,7 @@
 'use strict';
 
 // Init DOM onjects and variables
+document.querySelector('.reset').classList.add('hidden');
 document.querySelector('#more-info').classList.add('hidden');
 document.querySelector('#scores-table').classList.add('hidden');
 let numberCorrect = 0;
@@ -8,6 +9,8 @@ let parksAnswersString = '';
 
 // Initiate login and mandatory questions when button clicked
 document.querySelector('.login').addEventListener('click', function () {
+  document.querySelector('.login').classList.add('hidden'); // Hide Login button after clicked
+  document.querySelector('.reset').classList.remove('hidden');
   let loginName = prompt('Please enter your first name to login:');
   if (loginName !== null && loginName !== '') {
     numberCorrect = 0;
@@ -94,11 +97,16 @@ document.querySelector('.login').addEventListener('click', function () {
   }
 });
 
+document.querySelector('.reset').addEventListener('click', function () {
+  window.location.reload();
+});
+
 // Declare fucntion to ask and process all types of questions
 const askQuestion = function (message, correctAnswer, questionType) {
   let answerCorrect = false;
   let answerCount = 0;
-  while (true) { // Add error handling later
+  let errOccur = false; // Add error handling later
+  while (!errOccur) {
     let answer = prompt(message);
     if (answer != null) {
       // Handle for Yes/No questions
@@ -154,7 +162,7 @@ const askQuestion = function (message, correctAnswer, questionType) {
         for (let park of correctAnswer) {
           if (answer === park) {
             numberCorrect++;
-            alert('You guessed one of national park favorites! Great job!');
+            alert('You guessed one of my national park favorites! Great job!');
             return 1;
           }
         }
