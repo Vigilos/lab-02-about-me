@@ -49,7 +49,7 @@ main {
   padding-top: 10px;
 }
 .hidden {
-  /* display: none; */
+  display: none;
 }
 #education {
   list-style: square;
