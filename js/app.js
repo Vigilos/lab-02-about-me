@@ -119,11 +119,6 @@ const askQuestion = function (message, correctAnswer, questionType) {
             numberCorrect++;
             answerCorrect = true;
           }
-          // console.log(
-          //   `The correct answer to '${message}' is ${correctAnswer}. You answered ${answer}, which was ${
-          //     answerCorrect ? 'CORRECT' : 'INCORRECT'
-          //   }!`
-          // );
           alert(
             `The correct answer to '${message}' is ${correctAnswer}. You answered ${answer}, which was ${
               answerCorrect ? 'CORRECT' : 'INCORRECT'

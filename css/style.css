@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
 
+body {
+  background-color: #bdd3d3;
+  margin: 0;
+}
 header {
   background-image: url('../img/header-pic.JPG');
   background-size: cover;
@@ -13,9 +17,9 @@ h1 {
   font-weight: bold;
   font-size: 35px;
   margin: 0;
-  position: fixed;
+  position: absolute;
   top: 20px;
-  left: 30px;
+  left: 25px;
   background-color: #a6a6a7;
   padding-left: 10px;
   padding-right: 10px;
@@ -28,7 +32,7 @@ nav {
   height: 30px;
   padding-left: 10px;
   position: absolute;
-  top: 158px;
+  top: 150px;
 }
 nav ul {
   padding: 0;
